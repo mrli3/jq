@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        list-style:none;
+    }
+    .box{
+        width: 760px;
+        padding: 20px;
+        background: #00cdf2;
+        margin: 0 auto;
+    }
+    textarea{
+        width: 360px;
+        height: 80px;
+    }
+    .li1{
+        color:red;
+    }
+</style>
+<body>
+    <div class="box">
+        <textarea name="" id="" cols="30" rows="10"></textarea><br>
+        <button>评论</button>
+        <button>全部删除</button>
+        <div class="new"></div>
+    </div>
+</body>
+<script src="jquery-3.4.1.js"></script>
+<script>
+    var sum= 1
+    $("button").eq(0).click(function () {
+        var newbox = $("<div></div>").css({padding:"10px", marginTop:"10px  ",overflow:"hidden", background:"pink",width:"730px",border:"1px solid pink"})
+        var newimg = $("<img src='微信图片_20190804140932.png' />").css({marginRight:"20px",float:"left",borderRadius:"100%"})
+        var divzuo = $("<div></div>").css({float:"left",width:"490px",height:""})
+        var h4 = $("<h4></h4>").css({marginBottom:"16px"}).html("李美人：")
+        var in1 = $("textarea").val()
+        h4.append(in1)
+        var time = new Date()
+        var timer = time.toLocaleString()
+        divzuo.append(h4,timer)
+
+        var divyou = $("<div></div>").css({float:"right"})
+        var span1 = $("<span></span>").html("回复|")
+        var span2 = $("<span></span>").html("❤")
+        var span3 = $("<span></span>").html("赞")
+        var span4 = $("<span></span>").html("666")
+        var span5 = $("<span></span>").html(sum+"楼")
+        sum++
+        var span6 = $("<span></span>").html("删除")
+
+        divyou.append(span1,span2,span3,span4,span5,span6)
+
+        newbox.append(newimg,divzuo,divyou)
+        //点赞
+        $(span3).click(function () {
+            var xin = $(this).prev().hasClass("li1")
+            var shu = $(this).next().html()-0
+            if(xin){
+                $(this).prev().removeClass("li1")
+                $(this).next().html(shu-1)
+            }else{
+                $(this).prev().addClass("li1");
+                $(this).next().html(shu+1)
+            }
+        });
+
+
+
+
+        var newin = $("<input />").css({width:"300px",height:"40px"})
+        var newbtn = $("<button>回复</button>")
+        var huifu = $("<div></div>").css({display:"none", float:"right",width:"450px",border:"1px solid #000"});
+
+
+        $(span1).click(function () {
+            var height = $(newbox).height()-0;
+            if(height<=64){
+                $(huifu).show()
+            }else{
+                $(huifu).hide()
+            }
+        })
+        huifu.append(newin,newbtn)
+
+
+
+        $(newbtn).click(function () {
+
+            var huidiv = $("<div></div>").css({marginTop:"10px",padding:"10px",overflow:"hidden", border:"1px solid green",width:"300px",height:"60px"})
+            var newim = $("<img src='shou.png' />").css({marginRight:"10px",float:"left"})
+            var h4 = $("<h4></h4>").html("李某人回复：").css({marginBottom:"3px"})
+            var val = $(newin).val()
+            h4.append(val)
+            var time = new Date()
+            var timer = time.toLocaleString()
+
+
+
+            huidiv.append(newim,h4,timer)
+            $(huifu).prepend(huidiv)
+
+
+        })
+
+
+        $(newbox).append(huifu)
+        $(".new").prepend(newbox)
+
+
+        $(span6).click(function () {
+            $(newbox).remove()
+        })
+    })
+
+</script>
+</html>

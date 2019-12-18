@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        list-style:none;
+    }
+    .head{
+        width: 100%;
+    }
+    .content{
+        text-align: center;
+        font-size: 100px;
+        font-weight:bold;
+        color:white;
+        line-height:700px;
+        margin: 0 auto;
+        width: 1000px;
+        height: 700px;
+        background: #eee;
+        margin-top: 10px;
+    }
+    .ul1{
+        position: fixed;
+        top:100px;
+        bottom: 50%;
+        left:40px;
+        display: none;
+    }
+    .ul1>li{
+        width: 50px;
+        height: 50px;
+        text-align: center;
+        line-height: 50px;
+        border:1px dashed #00cbb1;
+    }
+    .ul1>li>a{
+        color:#7D83FF;
+        text-decoration: none;
+    }
+    .ul1>li>a{
+        font-size: 12px;
+        color:deepskyblue;
+        display: none;
+    }
+    .ul1>li>span{
+        font-size: 12px;
+        color:deepskyblue;
+    }
+    .li1{
+        background: red;
+    }
+    .footer{
+        height: 700px;
+        width: 100%;
+        background: deeppink;
+    }
+    .headnav{
+        width: 100%;
+        height: 600px;
+        background: #7D83FF;
+        text-align: center;
+        font-size: 100px;
+        font-weight:bold;
+        color:white;
+        line-height:600px;
+    }
+    .dao{
+        height: 40px;
+        line-height: 40px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        text-align: center;
+        background: #0aa770;
+        display: none;
+    }
+</style>
+<body>
+    <div class="dao">导航栏</div>
+    <div class="headnav">头部</div>
+    <div class="head">
+        <div id="f1" class="content" style="background: #cc0033;">第一层</div>
+        <div id="f2" class="content" style="background: #999933;">第二层</div>
+        <div id="f3" style="background: #ccff33;" class="content">第三层</div>
+        <div id="f4" style="background: #6666cc;" class="content">第四层</div>
+        <div id="f5" style="background: #ff6600;" class="content">第五层</div>
+        <div id="f6" style="background: #ffff00;" class="content">第六层</div>
+        <div id="f7" style="background: #3333ff;" class="content">第七层</div>
+        <div id="f8" style="background: #ff00cc;" class="content">第八层</div>
+        <div id="f9" style="background: #669900;" class="content">第九层</div>
+    </div>
+    <div class="footer"></div>
+    <ul class="ul1">
+        <li><a href="#f1">1F</a>
+        <span>第一层</span></li>
+        <li><a href="#f2">2F</a>
+        <span>第二层</span></li>
+        <li><a href="#f3">3F</a>
+        <span>第三层</span></li>
+        <li><a href="#f4">4F</a>
+            <span>第4层</span></li>
+        <li><a href="#f5">5F</a>
+            <span>第5层</span></li>
+        <li><a href="#f6">6F</a>
+            <span>第6层</span></li>
+        <li><a href="#f7">7F</a>
+            <span>第7层</span></li>
+        <li><a href="#f8">8F</a>
+            <span>第8层</span></li>
+        <li><a href="#f9">9F</a>
+            <span>第9层</span></li>
+        <a id="top" href="">TOP</a>
+    </ul>
+</body>
+<script src="jquery-3.4.1.js"></script>
+<script>
+    $(".ul1>li").hover(function () {
+        $(this).find("span").hide().siblings().show()
+    }, function () {
+        $(this).find("span").show().siblings().hide()
+    })
+    //楼层切换
+    $(".ul1 a").click(function () {
+        var hre = $(this).attr("href")
+        var moveH = $(hre).offset().top
+        $(this).parent().addClass("li1").siblings().removeClass("li1")
+        $("html,body").animate({scrollTop:moveH})
+    })
+    //随内容下拉导航条自动换层
+    $(window).scroll(function () {
+        var winTOP = $(window).scrollTop()
+//        console.log(winTOP)
+        $(".head>div").each(function(index,element){
+            var conTOP = $(element).offset().top
+            if(winTOP>=conTOP-90){
+                var index = $(element).index()
+                $(".ul1>li").eq(index).addClass("li1").siblings().removeClass("li1")
+            }
+        })
+    })
+    //回到顶部
+    $("#top").click(function () {
+        $(html,body).animate({scrollTop:0})
+    })
+    //侧栏跟导航栏显示
+    $(window).scroll(function () {
+        var wintop = $(window).scrollTop()
+        var headtop = $(".headnav").height()
+        if(wintop>=headtop){
+            $(".dao").show()
+            $(".ul1").show()
+        }else{
+            $(".dao").hide()
+            $(".ul1").hide()
+        }
+    })
+</script>
+</html>

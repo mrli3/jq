@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    table{
+        width: 500px;
+        height: 200px;
+        border-collapse:collapse;
+        color:#00cdf2;
+        margin: 100px auto;
+    }
+    input{
+        text-align: center;
+    }
+    span{
+        cursor:pointer;
+    }
+</style>
+<body>
+<table border="1" cellspacing="0">
+    <thead>
+    <tr>
+        <th><input type="checkbox">全选</th>
+        <th>名称</th>
+        <th>单价</th>
+        <th>数量</th>
+        <th>小计</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td><input type="checkbox"></td>
+        <td>苹果手机</td>
+        <td>2000</td>
+        <td><input value="-" type="button"><input value="1" type="text"><input value="+" type="button"></td>
+        <td>2000</td>
+        <td  style="cursor:pointer">删除</td>
+    </tr>
+    <tr>
+        <td><input type="checkbox"></td>
+        <td>华为手机</td>
+        <td>4999</td>
+        <td><input value="-" type="button"><input value="1" type="text"><input value="+" type="button"></td>
+        <td>4999</td>
+        <td style="cursor:pointer">删除</td>
+    </tr>
+    <tr>
+        <td><input type="checkbox"></td>
+        <td>小米手机</td>
+        <td>2999</td>
+        <td><input value="-" type="button"><input value="1" type="text"><input value="+" type="button"></td>
+        <td>2999</td>
+        <td style="cursor:pointer">删除</td>
+    </tr>
+
+    </tbody>
+    <tfoot>
+    <tr>
+        <td colspan="6">
+            <input type="checkbox">全选 <input value="删除所选" type="button">
+            <input value="清空购物车" type="button">
+            <span style="float:right">0</span><span style="float:right">总计</span><span style="float:right">￥</span>
+        </td>
+    </tr>
+    </tfoot>
+</table>
+</body>
+<script src="jquery-3.4.1.js"></script>
+<script>
+    $(function () {
+        zongji()
+    })
+    //加减功能
+    $("tbody [value='+'] ").click(function () {
+        var num = $(this).prev().val()
+        num++
+        $(this).prev().val(num)
+        var otr = $(this).parents("tr")
+        xiaoji(otr)
+        zongji()
+    })
+    $("tbody [value='-'] ").click(function () {
+        var num = $(this).next().val()
+        num--
+        if(num<1){
+            var ok=confirm("是否删除该商品")
+            if(ok){
+                $(this).parents("tr").remove()
+            }else{
+                num=1
+            }
+        }
+        $(this).next().val(num)
+        var otr = $(this).parents("tr")
+        xiaoji(otr)
+    })
+    //单删
+    $("tbody :contains('删除')").click(function () {
+        $(this).parents("tr").empty()
+        zongji()
+    })
+    //清空购物车
+    $("tfoot [value='清空购物车']").click(function () {
+        $("tbody tr").empty()
+        zongji
+    })
+    //全选反选
+    $("thead input").click(function () {
+        var state = $(this).prop("checked")
+        $("tbody [type=checkbox],tfoot [type=checkbox]").prop("checked",state)
+        zongji()
+    })
+
+    $("tbody [type=checkbox]").click(function () {
+        var num = $("tbody [type=checkbox]").length
+        var num1 = $("tbody input:checked").length
+        if(num==num1){
+            $("thead input:checkbox,tfoot input:checkbox").prop("checked",true)
+        }else{
+            $("thead input:checkbox,tfoot input:checkbox").prop("checked",false)
+        }
+        zongji()
+    })
+
+    //小计
+    function xiaoji(otr){
+        var danjia = otr.children().eq(2).html()-0
+        var num = otr.children().eq(3).find("[type=text]").val()
+        var ji=danjia*num
+        otr.children().eq(4).html(ji)
+    }
+    $("tbody tr").each(function(index,element){
+        xiaoji($(element))
+    })
+    //总计
+    function zongji(){
+        var sum=0
+        $("tbody input:checked").each(function(index,element){
+            var ji = $(element).parent().nextAll().eq(3).html()-0
+            sum=sum+ji
+        })
+        $("tfoot span").eq(0).html(sum)
+    }
+</script>
+</html>

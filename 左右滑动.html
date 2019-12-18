@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>左右滑动</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        list-style:none;
+    }
+    img{
+        width: 270px;
+        height: 360px;
+    }
+    ol{
+        position: absolute;
+        bottom: 6px;
+        left: 36%;
+    }
+    ol>li{
+        width: 16px;
+        float: left;
+        margin-left: 6px;
+        height: 16px;
+        border-radius:100%;
+        border:1px solid #7D83FF;
+    }
+    ul{
+        width: 1120px;
+    }
+    ul>li{
+        float: left;
+    }
+    .box{
+        width: 270px;
+        height: 360px;
+        margin: 100px auto;
+        overflow: hidden;
+        position: relative;
+    }
+    .li1{
+        background:chartreuse;
+    }
+    .left{
+
+    }
+</style>
+<body>
+    <div class="box">
+        <ul>
+            <li><img src="1537161938534.jpg" alt=""></li>
+            <li><img src="1507889251583.jpg" alt=""></li>
+            <li><img src="1515762262737.jpg" alt=""></li>
+            <li><img src="1528968758798.jpg" alt=""></li>
+        </ul>
+        <ol>
+            <li  class="li1"></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ol>
+        <div class="left"><</div>
+        <div class="right">></div>
+    </div>
+</body>
+<script src="jquery-3.4.1.js"></script>
+<script>
+    var wid = $(".box").width()
+    console.log(wid)
+    var index=0
+    $("ol>li").click(function () {
+        index=$(this).index()
+        $(this).addClass("li1").siblings().removeClass("li1")
+        $("ul").animate({marginLeft:-wid*index},500)
+    })
+
+    var timer = setInterval(move,2000)
+    function move(){
+        index++
+        if(index>3){
+            index=0
+        }
+        $("ol>li").eq(index).addClass("li1").siblings().removeClass("li1")
+        $("ul").animate({marginLeft:-wid*index},2000)
+    }
+    $(".box").hover(function(){
+        clearInterval(timer)
+    },function(){
+        timer=setInterval(move,2000)
+    })
+</script>
+</html>

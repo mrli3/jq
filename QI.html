@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    p{
+        display: none;
+        color:red;
+    }
+</style>
+<body>
+<h2>用户注册</h2>
+<form action="京东选项卡.html">
+    用户名：<input type="text"><br>
+    <p>由6-16位数字、字母、下划线组成</p>
+    姓名：<input type="text"><br>
+    <p>由2-4位中文组成</p>
+    电话：<input type="text"><br>
+    <p>由11位纯数字组成</p>
+    座机：<input type="text"><br>
+    <p>由11位纯数字和中横线组成</p>
+    邮箱：<input type="text"><br>
+    <p>输入正确的邮箱格式</p>
+    密码：<input type="password"><br>
+    <p>由6-16位数字、字母、下划线组成</p>
+    确认密码：<input type="password"><br>
+    <p>由6-16位数字、字母、下划线组成</p>
+    <input type="submit">
+</form>
+
+</body>
+<script src="jquery-3.4.1.js"></script>
+<script>
+    var flag=false
+    $("input:eq(0)").focus(function () {
+        $(this).next().next("p").show()
+    })
+    $("input:eq(0)").blur(function () {
+        var str = $(this).val().trim()
+        var res = /^\w{6,16}$/
+        var patt=res.test(str)
+        if(patt){
+            flag=true
+            $(this).next().next("p").show().html("输入正确").css({color:"green"})
+        }else{
+            flag=false
+            $(this).next().next("p").show().html("由6-16位数字、字母、下划线组成").css({color:"red"})
+        }
+    })
+
+
+    $("input:eq(1)").focus(function () {
+        $(this).next().next("p").show()
+    })
+    $("input:eq(1)").blur(function () {
+        var str = $(this).val().trim()
+        var res = /^[\u4e00-\u9fff]{2,4}$/
+        var patt=res.test(str)
+        if(patt){
+            flag=true
+            $(this).next().next("p").show().html("输入正确").css({color:"green"})
+        }else{
+            flag=false
+            $(this).next().next("p").show().html("由6-16位数字、字母、下划线组成").css({color:"red"})
+        }
+    })
+
+
+    $("input:eq(2)").focus(function () {
+        $(this).next().next("p").show()
+    })
+    $("input:eq(2)").blur(function () {
+        var str = $(this).val().trim()
+        var res = /^1(2|3|4|5|6|7|8|9)[0-9]{9}$/
+        var patt=res.test(str)
+        if(patt){
+            flag=true
+            $(this).next().next("p").show().html("输入正确").css({color:"green"})
+        }else{
+            flag=false
+            $(this).next().next("p").show().html("由6-16位数字、字母、下划线组成").css({color:"red"})
+        }
+    })
+
+
+    $("input:eq(3)").focus(function () {
+        $(this).next().next("p").show()
+    })
+    $("input:eq(3)").blur(function () {
+        var str = $(this).val().trim()
+        var res = /^([0-9]{3,4}-)?[0-9]{7,8}$/
+        var patt=res.test(str)
+        if(patt){
+            flag=true
+            $(this).next().next("p").show().html("输入正确").css({color:"green"})
+        }else{
+            flag=false
+            $(this).next().next("p").show().html("由11位纯数字和中横线组成").css({color:"red"})
+        }
+    })
+
+    $("input:eq(4)").focus(function () {
+        $(this).next().next("p").show()
+    })
+    $("input:eq(4)").blur(function () {
+        var str = $(this).val().trim()
+        var res = /^\w{1,}@[a-zA-Z0-9]{2,3}\.[a-zA-Z]{2,4}$/
+        var patt=res.test(str)
+        if(patt){
+            flag=true
+            $(this).next().next("p").show().html("输入正确").css({color:"green"})
+        }else{
+            flag=false
+            $(this).next().next("p").show().html("输入正确的邮箱格式").css({color:"red"})
+        }
+    })
+
+
+    $("input:eq(5)").focus(function () {
+        $(this).next().next("p").show()
+    })
+    $("input:eq(5)").blur(function () {
+        var str = $(this).val().trim()
+        var res = /^\w{6,16}$/
+        var patt=res.test(str)
+        if(patt){
+            flag=true
+            $(this).next().next("p").show().html("输入正确").css({color:"green"})
+        }else{
+            flag=false
+            $(this).next().next("p").show().html("由6-16位数字、字母、下划线组成").css({color:"red"})
+        }
+    })
+
+
+    $("input:eq(6)").focus(function () {
+        $(this).next().next("p").show()
+    })
+    $("input:eq(6)").blur(function () {
+        var str1 = $("input:eq(5)").val()
+        var str2 = $("input:eq(6)").val()
+        if(str1==str2){
+            flag=true
+            $(this).next().next("p").show().html("输入正确").css({color:"green"})
+        }else{
+            flag=false
+            $(this).next().next("p").show().html("由6-16位数字、字母、下划线组成").css({color:"red"})
+        }
+    })
+    
+    $("[type=submit]").click(function (e) {
+        e.preventDefault()
+        if(flag==true){
+            alert("点击确认跳转")
+            window.location.href="京东选项卡.html"
+        }else{
+            alert("输入不正确")
+        }
+    })
+</script>
+</html>

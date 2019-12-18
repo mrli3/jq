@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        list-style:none;
+    }
+    .box{
+        width: 400px;
+        margin: 100px auto;
+        border:1px solid grey;
+    }
+    img{
+        border:1px solid gray;
+    }
+    .right{
+        float: left;
+        text-align: center;
+        width: 260px;
+        margin: 0 auto;
+    }
+    .div1{
+        overflow: hidden;
+    }
+    i{
+        display: block;
+        width: 0px;
+        height: 0px;
+        border-width: 15px;
+        border-style:solid;
+        border-color:transparent transparent transparent red;
+        float: left;
+    }
+    h3{
+        padding: 10px;
+    }
+    .left{
+        float: left;
+    }
+    .box>ul{
+        overflow: hidden;
+        height: 40px;
+        background: #eee;
+    }
+    .box>ul>li{
+        float: left;
+        width: 200px;
+        line-height: 40px;
+        text-align: center;
+    }
+    .li1{
+        background: white;
+        color:red;
+    }
+    .left>div>p{
+        width: 30px;
+        height: 30px;
+        background: red;
+        color:white;
+        text-align: right;
+        line-height: 30px;
+        float: left;
+    }
+    .list>li{
+        overflow: hidden;
+        padding: 10px;
+    }
+    .right>img{
+        display: none;
+    }
+    .right>p{
+        display: none;
+    }
+    .box ol>li{
+        display: none;
+    }
+    .box ol>li.xianshi{
+        display: block;
+    }
+    #img1{
+        display: block;
+    }
+    #p1{
+        display: block;
+    }
+
+</style>
+<body>
+    <div class="box">
+        <ul>
+            <li class="li1">会员活动</li>
+            <li>经验分享</li>
+        </ul>
+        <ol>
+            <li class="xianshi">
+                <ul class="list">
+                    <li class="curent">
+                        <div class="left">
+                            <div class="div1">
+                                <p>1</p>
+                                <i></i>
+                            </div>
+                        </div>
+                        <div class="right">
+                            <img id="img1" src="bj1.png" alt="">
+                            <h3>品桃花，赢大礼</h3>
+                            <p id="p1">2019/08/02</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="left">
+                            <div class="div1">
+                                <p>2</p>
+                                <i></i>
+                            </div>
+                        </div>
+                        <div class="right">
+                            <img src="bj1.png" alt="">
+                            <h3>品桃花，赢大礼</h3>
+                            <p>2019/08/02</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="left">
+                            <div class="div1">
+                                <p>3</p>
+                                <i></i>
+                            </div>
+                        </div>
+                        <div class="right">
+                            <img src="bj1.png" alt="">
+                            <h3>品桃花，赢大礼</h3>
+                            <p>2019/08/02</p>
+                        </div>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <ul class="list">
+                <li class="curent">
+                    <div class="left">
+                        <div class="div1">
+                            <p>1</p>
+                            <i></i>
+                        </div>
+                    </div>
+                    <div class="right">
+                        <img id="img1" src="bj1.png" alt="">
+                        <h3>品桃花，赢大礼</h3>
+                        <p id="p1">2019/08/02</p>
+                    </div>
+                </li>
+                <li>
+                    <div class="left">
+                        <div class="div1">
+                            <p>2</p>
+                            <i></i>
+                        </div>
+                    </div>
+                    <div class="right">
+                        <img src="bj1.png" alt="">
+                        <h3>品桃花，赢大礼</h3>
+                        <p>2019/08/02</p>
+                    </div>
+                </li>
+                <li>
+                    <div class="left">
+                        <div class="div1">
+                            <p>3</p>
+                            <i></i>
+                        </div>
+                    </div>
+                    <div class="right">
+                        <img src="bj1.png" alt="">
+                        <h3>品桃花，赢大礼</h3>
+                        <p>2019/08/02</p>
+                    </div>
+                </li>
+            </ul>
+            </li>
+        </ol>
+    </div>
+
+</body>
+<script src="jquery-3.4.1.js"></script>
+<script>
+    $(".box>ul>li").mouseover(function () {
+        $(this).addClass("li1").siblings().removeClass("li1")
+        $(".box>ol>li").eq($(this).index()).show().siblings().hide()
+    })
+    $(".list>li").mouseover(function () {
+        $(this).find("img").show().siblings("p").show()
+        $(this).siblings().find("img").hide().siblings("p").hide()
+
+    })
+</script>
+</html>

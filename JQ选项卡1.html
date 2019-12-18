@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        list-style:none;
+    }
+    #box{
+        width: 400px;
+        margin: 0 auto;
+        background: #8dc1ce;
+    }
+    ul>li{
+        float: left;
+        width: 100px;
+        height: 40px;
+        text-align: center;
+        background: #00cbb1;
+        line-height: 40px;
+    }
+    #box ol>li{
+        display: none;
+    }
+    #box ol>li.li2{
+        display: block;
+    }
+    ul>li.li1{
+        background: #8dc1ce;
+    }
+</style>
+<body>
+    <div id="box">
+        <ul>
+            <li class="li1">18岁</li>
+            <li>19岁</li>
+            <li>20岁</li>
+            <li>21岁</li>
+        </ul>
+        <ol>
+            <li class="li2">吹牛逼</li>
+            <li>继续吹牛逼</li>
+            <li>还吹牛逼</li>
+            <li>嗯</li>
+        </ol>
+    </div>
+</body>
+<script src="jquery-3.4.1.js"></script>
+<script>
+        $("#box ul>li").click(function () {
+            var i =$(this).index()
+            $("#box ul>li").eq(i).addClass("li1").siblings().removeClass("li1")
+            $("#box ol>li").eq(i).show().siblings().hide()
+        })
+</script>
+</html>

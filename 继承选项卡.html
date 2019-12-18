@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    .box{
+        width: 400px;
+        border: 1px solid #000;
+        margin: 0 auto;
+        margin-top: 30px;
+    }
+    *{
+        margin: 0;
+        padding:0;
+        list-style:none;
+    }
+    ul{
+        height: 40px;
+    }
+    ul>li{
+        float: left;
+        width: 100px;
+        background: red;
+        line-height: 40px;
+        text-align: center;
+    }
+    .box ul>li.li1{
+        background: #00ae66;
+    }
+    ol>li{
+        display: none;
+        height: 360px;
+        background: #00cdf2;
+    }
+    .box ol>li.li2{
+        display: block;
+    }
+</style>
+<body>
+<div class="box">
+    <ul>
+        <li class="li1">第一月</li>
+        <li>第2月</li>
+        <li>第3月</li>
+        <li>第4月</li>
+    </ul>
+    <ol>
+        <li class="li2">CSS</li>
+        <li>JS</li>
+        <li>JQ</li>
+        <li>移动端</li>
+    </ol>
+</div>
+</body>
+<script>
+    function Xxk(){
+        var obox = document.getElementsByClassName("box")[0]
+        this.newul = obox.children[0].getElementsByTagName("li")
+        this.newol = obox.children[1].getElementsByTagName("li")
+
+        var _this=this
+        
+        for(i=0;i<this.newul.length;i++){
+            this.newul[i].index=i
+            this.newul[i].onclick= function () {
+                for(j=0;j<_this.newul.length;j++){
+                    _this.newul[j].className=""
+                    _this.newol[j].className=""
+                }
+                this.className="li1"
+                _this.newol[this.index].className="li2"
+            }
+        }
+    }
+    Xxk()
+</script>
+</html>

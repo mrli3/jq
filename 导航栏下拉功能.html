@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding:0;
+        list-style:none;
+    }
+    .box{
+        width: 700px;
+        margin: 0 auto;
+    }
+    ul>li{
+        cursor:pointer;
+        border-right:1px solid #fff;
+        float: left;
+        height: 40px;
+        text-align: center;
+        line-height: 40px;
+        background: orange;
+        width: 140px;
+    }
+
+    ol>li{
+        width: 140px;
+        background: #eee;
+    }
+    ol>li:hover{
+        background: #4aa4fc;
+    }
+    ol{
+        display: none;
+    }
+    h4{
+        text-align: center;
+    }
+</style>
+<body>
+    <div class="box">
+        <ul>
+            <li>
+                <h4>上衣</h4>
+                <ol>
+                    <li>短袖</li>
+                    <li>长袖</li>
+                    <li>内衣</li>
+                </ol>
+            </li>
+            <li>
+                <h4>下衣</h4>
+                <ol>
+                    <li>短袖</li>
+                    <li>长袖</li>
+                    <li>内衣</li>
+                </ol>
+            </li>
+            <li>
+                <h4>裙子</h4>
+                <ol>
+                    <li>短袖</li>
+                    <li>长袖</li>
+                    <li>内衣</li>
+                </ol>
+            </li>
+            <li>
+                <h4>袜子</h4>
+                <ol>
+                    <li>短袖</li>
+                    <li>长袖</li>
+                    <li>内衣</li>
+                </ol>
+            </li>
+        </ul>
+    </div>
+</body>
+<script src="jquery-3.4.1.js"></script>
+<script>
+    $("h4").mouseover(function () {
+        $(this).siblings().slideDown()
+        $(this).parent().siblings().find("ol").fadeOut()
+    })
+    $(".box").mouseleave(function () {
+        $(this).find("ol").fadeOut()
+    })
+</script>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="">
+    <select name="" id="sel1">
+        <option value="">请选择省份</option>
+        <option value="">山西省</option>
+        <option value="">浙江省</option>
+        <option value="">陕西省</option>
+    </select>
+    <select name="" id="sel2">
+        <option value="">请选择市</option>
+    </select>
+</form>
+</body>
+<script>
+    var sel1 = document.getElementById("sel1")
+    var sel2 = document.getElementById("sel2")
+
+    var city = [[],["运城市","侯马市","临汾市"],["温州市","杭州市","灵溪市"],["宁夏市","陕西市"]]
+
+    sel1.onchange= function () {
+        sel2.length=1
+        for(i=0;i<sel1.length;i++){
+            var index =sel1.selectedIndex
+            console.log(index)
+        }
+        var a = city[index]
+        for(j=0;j< a.length;j++){
+            var op = document.createElement("option")
+            op.innerHTML=a[j]
+            sel2.appendChild(op)
+        }
+    }
+</script>
+</html>

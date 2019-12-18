@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    .box{
+        padding: 20px;
+        width: 760px;
+        background: #4ba3fc;
+        margin: 0 auto;
+    }
+    textarea   {
+        width: 360px;
+        height: 80px;
+    }
+    .li1{
+        color:red;
+    }
+    .sub{
+        overflow: hidden;
+    }
+    .li2{
+        color:yellow;
+    }
+    .p1{
+        display: none;
+    }
+</style>
+<body>
+    <div class="box">
+        <textarea name="" id="" cols="30" rows="10"></textarea><br>
+        <button>评论</button>
+        <button>全部删除</button>
+        <p class="p1">请输入内容</p>
+        <div class="sub"></div>
+    </div>
+
+</body>
+<script src="jquery-3.4.1.js"></script>
+<script>
+    var sum = 1
+    $("button").eq(0).click(function () {
+        if($("textarea").val()==""){
+            $(".p1").css({display:"block",color:"red"})
+            return false
+        }else{
+            $(".p1").css({display:"none"})
+        }
+        var newbox = $("<div></div>").css({paddingTop:"10px",overflow:"hidden",marginTop:"20px",width:"760px",border:"1px solid red",background:"pink"})
+        var youdiv = $("<div></div>")
+
+
+        var newdiv = $("<div></div>").css({width:"490px",float:"left"})
+        var newdiv1 = $("<div></div>").css({width:"170px",float:"right"})
+        var newdiv2 = $("<div></div>").css({display:"none",float:"right",width:"450px",border:"1px solid red"})
+
+
+
+        var newimg = $("<img src='微信图片_20190804140932.png'/>").css({float:"left",marginRight:"20px",width:"60px",height:"60px",borderRadius:"100%"})
+        var newH = $("<h4></h4>").html("林中鸟:")
+        var val = $("textarea").eq(0).val()
+        newH.append(val)
+        $("textarea").val("")
+        var newspan1 = $("<span></span>").html("回复|")
+        var newspan2 = $("<span></span>").html("❤")
+        var newspan3 = $("<span></span>").html("赞")
+        var newspan4 = $("<span></span>").html("666")
+        var newspan5 = $("<span></span>").html(sum+"楼").css({margin:"10px"})
+        sum++
+        var newspan6 = $("<span></span>").html("删除")
+
+        var newp = $("<span></span>")
+        newp.append(newspan1,newspan2,newspan3,newspan4,newspan5,newspan6)
+
+
+        var newp1 = $("<p></p>").css({marginTop:"20px"})
+        var time = new Date()
+        var timer = time.toLocaleString()
+        newp1.append(timer)
+
+        $(newdiv).append(newH)
+        $(newdiv).append(newp1)
+
+        newdiv2.append(youdiv)
+        $(newdiv1).append(newp)
+        $(newbox).append(newimg,newdiv,newdiv1,newdiv2)
+
+        $(".sub").prepend(newbox)
+
+        var btn = $("<button>回复</button>")
+        $(btn).click(function () {
+            var huidiv = $("<div></div>").css({marginTop:"10px",width:"400px",height:"100px"})
+
+            var str = $(huifu).val()
+            var newimg1 = $("<img src='shou.png' />").css({float:"left",marginRight:"10px"})
+            var nh4 = $("<h4></h4>").html("王五："+str)
+            huidiv.append(newimg1,nh4,timer)
+
+            youdiv.prepend(huidiv)
+
+        })
+        var xia = $("<div></div>")
+        var huifu = $("<input/>").css({type:"text",width:"200px",height:"40px"})
+        xia.append(huifu)
+        xia.append(btn)
+        youdiv.append(xia)
+
+        newspan6.click(function () {
+            newbox.remove()
+        })
+
+        newspan3.click(function () {
+            var xin = newspan2.hasClass("li1")
+            var res = newspan4.html()-0
+            if(xin){
+                $(this).next().html(res-1)
+                $(this).prev().removeClass("li1")
+            }else{
+                $(this).next().html(res+1)
+                $(this).prev().addClass("li1")
+            }
+        })
+        newspan1.click(function () {
+            var pat = parseInt($(newbox).css("height"))
+            console.log(pat)
+            if(pat==61){
+                $(newdiv2).css({display:"block"})
+            }else{
+                $(newdiv2).css({display:"none"})
+            }
+        })
+
+    })
+
+    $("button").eq(1).click(function () {
+        $(".sub").empty()
+    })
+
+</script>
+</html>

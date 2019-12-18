@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="box"></div>
+<script>
+    var obox = document.getElementsByClassName('box')[0]
+    var body = document.getElementsByTagName('body')[0]
+    body.style.position="relative"
+    function Circle(){
+        this.createColor= function () {
+            var r = parseInt(Math.random()*256)
+            var g = parseInt(Math.random()*256)
+            var b = parseInt(Math.random()*256)
+            return "rgb("+r+','+g+','+b+")"
+        }
+        this.background=this.createColor()
+        this.createLen= function () {
+            var len = parseInt(Math.random()*100)
+            return len
+        }
+        this.length=this.createLen()
+        this.createWEI= function () {
+            var p = parseInt(Math.random()*1400)
+            return p
+        }
+        this.top=this.createWEI()
+        this.left=this.createWEI()
+
+    }
+
+    for(var i=0;i<=100;i++){
+        var obj = new Circle();
+        var newdiv = document.createElement('div');
+        newdiv.style.width=obj.length+"px";
+        newdiv.style.height=newdiv.style.width
+        newdiv.style.background=obj.background;
+        newdiv.style.borderRadius="100%";
+        newdiv.style.position="absolute";
+        newdiv.style.top=obj.top+"px";
+        newdiv.style.left=obj.left+"px";
+
+        body.appendChild(newdiv)
+
+    }
+
+</script>
+</body>
+</html>

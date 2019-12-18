@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    .box{
+        width: 400px;
+        border: 1px solid #000;
+        margin: 0 auto;
+        margin-top: 30px;
+    }
+    *{
+        margin: 0;
+        padding:0;
+        list-style:none;
+    }
+    ul{
+        height: 40px;
+    }
+    ul>li{
+        float: left;
+        width: 100px;
+        background: red;
+        line-height: 40px;
+        text-align: center;
+    }
+    .box ul>li.li1{
+        background: #00ae66;
+    }
+    ol>li{
+        display: none;
+        height: 360px;
+        background: #00cdf2;
+    }
+    .box ol>li.li2{
+        display: block;
+    }
+</style>
+<body>
+    <div class="box">
+        <ul>
+            <li class="li1">第一月</li>
+            <li>第2月</li>
+            <li>第3月</li>
+            <li>第4月</li>
+        </ul>
+        <div class="box1">
+            <ol>
+                <li class="li2">CSS</li>
+                <li>JS</li>
+                <li>JQ</li>
+                <li>移动端</li>
+            </ol>
+        </div>
+    </div>
+</body>
+<script>
+//    var obox = document.getElementsByClassName("box")[0]
+//    var newul = obox.getElementsByTagName("li")
+//    var obox1 = document.getElementsByClassName("box1")[0]
+//    var newol = obox1.getElementsByTagName("li")
+
+//    for(let i=0;i<newul.length;i++){
+//        newul[i].index=i
+//        newul[i].onclick= function () {
+//            for(j=0;j<newul.length;j++){
+//                newul[j].className=""
+//            }
+//            for(k=0;k<newol.length;k++){
+//                newol[k].className=""
+//            }
+//            this.className="li1"
+//            newol[this.index].className="li2"
+//        }
+//    }
+
+    //面向对象
+    function Xxk(){
+        var obox = document.getElementsByClassName("box")[0]
+        this.newul = obox.getElementsByTagName("li")
+        var obox1 = document.getElementsByClassName("box1")[0]
+        this.newol = obox1.getElementsByTagName("li")
+        var _this=this
+
+        for(let i=0;i<newul.length;i++){
+            this.newul[i].index=i
+            this.newul[i].onclick= function () {
+                for(j=0;j<newul.length;j++){
+                    _this.newul[j].className=""
+                }
+                for(k=0;k<_this.newol.length;k++){
+                    _this.newol[k].className=""
+                }
+                this.className="li1"
+                _this.newol[this.index].className="li2"
+            }
+        }
+    }
+    Xxk()
+</script>
+</html>

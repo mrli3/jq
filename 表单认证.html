@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>表单认证</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    span{
+        opacity: 0;
+    }
+    .redd{
+        color:red;
+    }
+    div{
+        width: 400px;
+        margin: 0 auto ;
+    }
+</style>
+<body>
+<div>
+    姓名：<input placeholder="请输入姓名" type="text"><span class="span1">由字母、数字、下划线组成</span><br>
+    电话：<input placeholder="输入11位手机号码" class="in2" type="text"><span class="span2">11位数字组成</span><br>
+    密码：<input placeholder="请输入密码" class="in3" type="password"><span class="span3">6位数字</span><br>
+    确认密码：<input placeholder="确认密码" class="in4" type="password"><span class="span4">两次密码输入相同</span><br>
+    邮箱：<input placeholder="输入正确的电子邮箱" class="in5" type="text"><span class="span5">请输入正确的邮箱格式</span><br>
+    <button id="btn">提交</button>
+
+</div>
+
+</body>
+<script src="jquery-3.4.1.js"></script>
+<script>
+
+    var btn=document.getElementById('btn')
+    var newin5 = document.getElementsByClassName('in5')[0]
+    var newsp5 = document.getElementsByClassName('span5')[0]
+    var newin = document.getElementsByTagName("input")[0]
+    var newin2 = document.getElementsByClassName('in2')[0]
+    var newin3 = document.getElementsByClassName('in3')[0]
+    var newin4 = document.getElementsByClassName('in4')[0]
+    var newsp = document.getElementsByClassName('span1')[0]
+    var newsp2 = document.getElementsByClassName('span2')[0]
+    var newsp3 = document.getElementsByClassName('span3')[0]
+    var newsp4 = document.getElementsByClassName('span4')[0]
+    newin.onfocus= function () {
+        newsp.style.opacity=1
+    }
+    newin.onblur= function () {
+        var reg = /^\w{4,16}$/;
+        var btt = reg.test(newin.value)
+        if(btt){
+            newsp.innerHTML="正确"
+        }else{
+            newsp.innerHTML="输入有误"
+        }
+    }
+    newin2.onfocus= function () {
+        newsp2.style.opacity=1
+    }
+    newin2.onblur= function () {
+        var reg1 = /^1\d{10,10}$/
+        var btt1 = reg1.test(newin2.value)
+        if(btt1){
+            newsp2.innerHTML="正确"
+        }else{
+            newsp2.innerHTML="输入有误"
+        }
+    }
+    newin3.onfocus= function () {
+        newsp3.style.opacity=1
+    }
+    newin3.onblur= function () {
+        var reg2 = /^\d{6,6}$/
+        var btt2 = reg2.test(newin3.value)
+        if(btt2){
+            newsp3.innerHTML="正确"
+        }else{
+            newsp3.innerHTML="输入有误"
+        }
+    }
+    newin4.onfocus= function () {
+        newsp4.style.opacity=1
+    }
+    newin4.onblur= function () {
+        if(newin3.value==newin4.value){
+            newsp4.innerHTML="正确"
+        }else{
+            newsp4.innerHTML="两次密码输入不一致"
+        }
+    }
+    newin5.onfocus= function () {
+        newsp5.style.opacity=1
+    }
+    newin5.onblur= function () {
+        var reg5 = /^\w{1,}@[a-zA-Z0-9]{2,5}\.[a-zA-Z]{2,3}$/;
+        var btt5 = reg5.test(newin5.value)
+        if(btt5){
+            newsp5.innerHTML="正确"
+        }else{
+            newsp5.innerHTML="输入有误"
+        }
+    }
+    btn.onclick=function (){
+        if(newsp.innerHTML=="正确"&&newsp2.innerHTML=="正确"&&newsp3.innerHTML=="正确"&&newsp4.innerHTML=="正确"&&newsp5.innerHTML=="正确"){
+            newsp.style.opacity=0
+            newsp2.style.opacity=0
+            newsp3.style.opacity=0
+            newsp4.style.opacity=0
+            newsp5.style.opacity=0
+            newin.value=""
+            newin2.value=""
+            newin3.value=""
+            newin4.value=""
+            newin5.value=""
+            alert("提交成功")
+        }else{
+            alert('输入内容有误  ')
+        }
+    }
+</script>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    .box{
+        width: 600px;
+        border: 1px solid #000;
+        margin: 0 auto;
+    }
+    h1{
+        text-align: center;
+    }
+    .div1{
+        margin-left: 100px;
+    }
+    textarea{
+        width: 400px;
+    }
+</style>
+<body>
+    <div class="box">
+        <h1>留言板</h1>
+        <div class="div1">
+            姓名：<input id="in1" type="text"><br>
+            内容：<br>
+            <textarea id="in2" name="" id="" cols="30" rows="10"></textarea><br>
+            <button>发布</button>
+        </div>
+        <h1>留言内容</h1>
+        <div class="jiao"></div>
+    </div>
+</body>
+<script>
+    var newin1 = document.getElementById("in1")
+    var newin2 = document.getElementById("in2")
+    var obox = document.getElementsByClassName("box")[0]
+    var btn = document.getElementsByTagName("button")[0]
+    var jiao = document.getElementsByClassName("jiao")[0]
+
+    btn.onclick= function () {
+        if(newin1.value==""||newin2.value==""){
+            alert("内容不能为空")
+        }else{
+            var newdiv = document.createElement("div")
+            var newdiv1 = document.createElement("div")
+            newdiv1.style.overflow="hidden"
+            var newp = document.createElement("p")
+            var newspan1 = document.createElement("span")
+            var newspan2 = document.createElement("span")
+            newspan1.innerHTML="姓名："
+            newp.appendChild(newspan1)
+            newspan2.innerHTML=newin1.value
+            newin1.value=""
+            newp.appendChild(newspan2)
+            newdiv1.appendChild(newp)
+            var newp1 = document.createElement("p")
+            var newspan3 = document.createElement("span")
+            newspan3.innerHTML="留言内容是："
+            newp1.appendChild(newspan3)
+            var newspan4 = document.createElement("span")
+            newspan4.innerHTML=newin2.value
+            newin2.value=""
+            newp1.appendChild(newspan4)
+            newdiv1.appendChild(newp1)
+            var newbtn = document.createElement("input")
+            newbtn.setAttribute("type","button")
+            newbtn.setAttribute("value","删除")
+            newp1.appendChild(newbtn)
+            newbtn.style.float="right"
+            newdiv1.appendChild(newbtn)
+            newdiv.appendChild(newdiv1)
+            newdiv1.style.width="400px"
+            newdiv1.style.height="120px"
+            newdiv1.style.border="1px solid grey"
+            newdiv1.style.margin="0 auto"
+            newdiv1.style.marginTop="10px"
+            jiao.appendChild(newdiv)
+
+
+            newbtn.onclick= function () {
+                newbtn.parentNode.parentNode.remove()
+            }
+        }
+        }
+
+
+</script>
+</html>

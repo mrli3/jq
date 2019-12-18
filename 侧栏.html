@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    .new1{
+        width: 20px;
+        height: 20px;
+        background: #4aa4fc;
+        float: right;
+        margin-top: 100px;
+        text-align: center;
+    }
+    .box{
+        width: 200px;
+        height: 300px;
+        position: absolute;
+        right: 0;
+        top: 300px;
+    }
+    .new2{
+        width: 100px;
+        height: 200px;
+        background: #000000;
+        float: right;
+        display: none;
+        color:white;
+    }
+</style>
+<body>
+    <div class="box">
+        <div class="new2">就知道你个沙雕要点</div>
+        <div class="new1"><</div>
+    </div>
+</body>
+<script src="jquery-3.4.1.js"></script>
+<script>
+    var a = 1
+    $(".new1").click(function () {
+        a++
+        $(this).siblings().animate({width:"toggle"})
+        if(a%2==0){
+            $(this).html(">")
+        }else{
+            $(this).html("<")
+        }
+
+    })
+</script>
+</html>

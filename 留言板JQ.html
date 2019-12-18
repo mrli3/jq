@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    .box{
+        width: 600px;
+        border: 1px solid #000;
+        margin: 0 auto;
+    }
+    h1{
+        text-align: center;
+    }
+    .div1{
+        margin-left: 100px;
+    }
+    textarea{
+        width: 400px;
+    }
+</style>
+<body>
+<div class="box">
+    <h1>留言板</h1>
+    <div class="div1">
+        姓名：<input id="in1" type="text"><br>
+        内容：<br>
+        <textarea id="in2" name="" id="" cols="30" rows="10"></textarea><br>
+        <button>发布</button>
+    </div>
+    <h1>留言内容</h1>
+    <div class="jiao"></div>
+</div>
+</body>
+<script src="jquery-3.4.1.js"></script>
+<script>
+    $("button").click(function () {
+        var newin1 = $("#in1").val()
+        var newin2 = $("#in2").val()
+
+        var newdiv = $("<div></div>").css({width:"400px",height:"120px",border:"1px solid #000",margin:"0 auto"})
+        var newp1 = $("<p></p>")
+        var span1 = $("<span></span>").html("姓名：")
+        span1.append(newin1)
+        newp1.append(span1)
+        newdiv.append(newp1)
+        var newp2 = $("<p></p>")
+        var span2 = $("<span></span>").html("留言内容是：")
+        newp2.append(span2)
+        var span3 = $("<span></span>")
+        span3.append(newin2)
+        newp2.append(span3)
+        var btn = $("<button>删除</button>").css({float:"right",class:"aa"}).click(function () {
+            $(this).parent().parent().remove()
+        })
+        newp2.append(btn)
+        newdiv.append(newp2)
+
+        $(".jiao").append(newdiv)
+
+
+    })
+
+</script>
+</html>

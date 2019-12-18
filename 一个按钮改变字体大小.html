@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<style>
+    .box{
+        width: 300px;
+        height: 300px;
+        border: 1px solid #000;
+    }
+    p{
+        text-align: center;
+    }
+</style>
+<body>
+    <div class="box">
+        <p>全身变</p>
+    </div>
+    <button class="btn">点击变变变</button>
+</body>
+<script>
+    var obox = document.getElementsByClassName("box")[0]
+    var newp = document.getElementsByTagName("p")[0]
+    var btn = document.getElementsByClassName("btn")[0]
+
+    btn.onclick= function () {
+        newp.style.fontSize=parseInt(Math.random()*100)+"px"
+        newp.style.color=Change()
+        obox.style.background=Change()
+    }
+    function Change(){
+        var r = parseInt(Math.random()*256)
+        var g = parseInt(Math.random()*256)
+        var b = parseInt(Math.random()*256)
+
+        return "rgb("+r+','+g+','+b+")"
+    }
+
+</script>
+</html>

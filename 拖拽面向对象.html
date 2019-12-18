@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    .div1{
+        width: 500px;
+        height: 500px;
+        background: #00cdf2;
+        position: relative;
+        margin-bottom: 20px;
+    }
+    .div2{
+        width: 50px;
+        height: 50px;
+        background: #000;
+        position: absolute;
+    }
+</style>
+<body>
+<div class="div1" id="div3">
+    <div id="div4" class="div2"></div>
+</div>
+<div class="div1" id="div5">
+    <div id="div6" class="div2"></div>
+</div>
+</body>
+<script>
+        function Fu(a,b) {
+            this.div1 = document.getElementById(a)
+            this.div2 = document.getElementById(b)
+        }
+        Fu.prototype.say= function () {
+            div2.onmousedown= function (e) {
+                var x = e.clientX-div2.offsetLeft
+                var y = e.clientY-div2.offsetTop
+
+                document.onmousemove= function (e) {
+                    var maxl = div1.offsetWidth-div2.offsetWidth
+                    var maxt = div1.offsetHeight-div2.offsetHeight
+
+                    var xx = e.clientX-x
+                    var yy = e.clientY-y
+
+                    if(xx<=0){
+                        xx=0
+                    }else if(xx>=maxl){
+                        xx=maxl
+                    }
+                    if(yy<=0){
+                        yy=0
+                    }else if(yy>=maxt){
+                        yy=maxl
+                    }
+
+                    div2.style.left=xx+"px"
+                    div2.style.top=yy+"px"
+
+                }
+            }
+            document.onmouseup= function () {
+                document.onmousemove="null"
+            }
+        }
+
+            function Zi(a,b){
+                Fu.apply(this,[a,b])
+            }
+
+
+    new Fu("div3","div4")
+    new Fu("div5","div6")
+
+
+
+
+
+
+</script>
+</html>

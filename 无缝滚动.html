@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        list-style:none;
+    }
+    img{
+        width: 200px;
+        height: 100px;
+    }
+    .box{
+        border:1px solid red;
+        width: 800px;
+        margin: 100px auto;
+        height: 100px;
+        position: relative;
+        overflow: hidden;
+    }
+    ul{
+        position: absolute;
+        left: 0;
+        top: 0;
+        overflow: hidden;
+        width: 1600px;
+    }
+    ul>li{
+        float: left;
+    }
+</style>
+<body>
+    <div class="box">
+        <ul>
+            <li><img src="1507889251583.jpg" alt=""></li>
+            <li><img src="1515762262737.jpg" alt=""></li>
+            <li><img src="1528968758798.jpg" alt=""></li>
+            <li><img src="1537161938534.jpg" alt=""></li>
+        </ul>
+    </div>
+</body>
+<script src="jquery-3.4.1.js"></script>
+<script>
+    var l =0
+    var newli = $(".box>ul>li").clone()
+    $(".box>ul").append(newli)
+    var timer = setInterval(move,200)
+    function move(){
+
+        l = l-100
+        if(l==-800){
+            l=0
+        }
+        $(".box>ul").css({left:l+"px"})
+    }
+    $(".box").hover(function(){
+        clearInterval(timer)
+    },function(){
+        timer=setInterval(move,200)
+    })
+</script>
+</html>

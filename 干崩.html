@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        list-style:none;
+    }
+    .box{
+        width: 100%;
+        background: #000;
+        position: relative;
+    }
+    .core{
+        width: 860px;
+        height: 370px;
+        margin: 100px auto;
+        position: relative;
+        overflow: hidden;
+    }
+    ul{
+        position: absolute;
+        top: 0;
+        left: 0;
+        /*width: 4300px;*/
+    }
+    ul>li{
+        /*float: left;*/
+    }
+    ul>li>p{
+        position: absolute;
+        top: 10px;
+        background: #000;
+        opacity: 0.5;
+        color:#00cdf2;
+        width: 860px;
+        height: 40px;
+        line-height: 40px;
+        text-align: center;
+    }
+    .curent{
+        display: block;
+    }
+    ol>li{
+        width: 14px;
+        height: 14px;
+        border: 1px solid #00cdf2;
+        /*float: left;*/
+        margin-bottom: 10px;
+    }
+    ol{
+        position: absolute;
+        bottom: 44px;
+        left: 40%;
+        overflow: hidden;
+    }
+    .li1{
+        background: yellow;
+    }
+    .left{
+        width: 16px;
+        height: 20px;
+        background: #000;
+        color:white;
+        text-align: center;
+        line-height: 20px;
+        top: 50%;
+        left: 20px;
+        cursor:pointer;
+        opacity: 0;
+    }
+    .right{
+        width: 16px;
+        height: 20px;
+        background: #000;
+        color:white;
+        text-align: center;
+        line-height: 20px;
+        position: absolute;
+        top: 50%;
+        right: 20px;
+        cursor:pointer;
+        opacity: 0;
+    }
+</style>
+<body>
+<div class="box">
+    <div class="core">
+        <ul>
+            <li class="curent">
+                <img src="1.jpg" alt="">
+                <p>第一张</p>
+            </li>
+            <li>
+                <img src="2.jpg" alt="">
+                <p>第2张</p>
+            </li>
+            <li>
+                <img src="3.jpg" alt="">
+                <p>第3张</p>
+            </li>
+            <li>
+                <img src="4.jpg" alt="">
+                <p>第4张</p>
+            </li>
+            <li>
+                <img src="5.jpg" alt="">
+                <p>第5张</p>
+            </li>
+        </ul>
+        <ol>
+            <li class="li1"></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ol>
+        <div class="left"><</div>
+        <div class="right">></div>
+    </div>
+</div>
+</body>
+<script src="jquery-3.4.1.js"></script>
+<script>
+    var index = 0
+    $("ol>li").click(function () {
+        index = $(this).index()
+        $(this).addClass("li1").siblings().removeClass("li1")
+        $("ul").animate({top:"-370"*index+"px"},500)
+    })
+</script>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        list-style:none;
+    }
+    .box{
+        width: 200px;
+        margin: 30px auto;
+        height: 300px;
+        border: 1px solid #000;
+    }
+    .box ul>li{
+        width: 100px;
+        height: 40px;
+        line-height: 40px;
+        text-align: center;
+    }
+    .box ul>li>div:hover{
+        background: #1f99f4;
+    }
+    ol{
+        display: none;
+    }
+    ol>li{
+        height: 40px;
+        line-height: 40px;
+        text-align: center;
+
+    }
+    ul ol>li:hover{
+        background: orange;
+    }
+    ul{
+        clear: both;
+    }
+    ul>li{
+        float: left;
+    }
+</style>
+<body>
+    <div class="box">
+        <ul>
+            <li>
+                <div>首页1</div>
+                <ol>
+                    <li>首页1-1</li>
+                    <li>首页1-2</li>
+                    <li>首页1-3</li>
+                </ol>
+            </li>
+            <li>
+                <div>首页1</div>
+                <ol>
+                    <li>首页1-1</li>
+                    <li>首页1-2</li>
+                    <li>首页1-3</li>
+                </ol>
+            </li>
+        </ul>
+    </div>
+</body>
+<script src="jquery-3.4.1.js"></script>
+<script>
+    $(".box ul>li").hover(function(){
+        $(this).find("ol").show()
+    },function(){
+        $(".box ul>li").find("ol").hide()
+    })
+</script>
+</html>

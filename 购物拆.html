@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    table{
+        width: 500px;
+        height: 200px;
+        border-collapse:collapse;
+        color:#00cdf2;
+        margin: 100px auto;
+    }
+    input{
+        text-align: center;
+    }
+    span{
+        cursor:pointer;
+    }
+</style>
+<body>
+    <table border="1" cellspacing="0">
+        <thead>
+            <tr>
+                <th><input type="checkbox">全选</th>
+                <th>名称</th>
+                <th>单价</th>
+                <th>数量</th>
+                <th>小计</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><input type="checkbox"></td>
+                <td>苹果手机</td>
+                <td>2000</td>
+                <td><input value="-" type="button"><input value="1" type="text"><input value="+" type="button"></td>
+                <td>2000</td>
+                <td  style="cursor:pointer">删除</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox"></td>
+                <td>华为手机</td>
+                <td>4999</td>
+                <td><input value="-" type="button"><input value="1" type="text"><input value="+" type="button"></td>
+                <td>4999</td>
+                <td style="cursor:pointer">删除</td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="6">
+                    <input type="checkbox">全选 <input value="删除所选" type="button">
+                    <input value="清空购物车" type="button">
+                    <span style="float:right">0</span><span style="float:right">总计</span><span style="float:right">￥</span>
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+</body>
+<script src="jquery-3.4.1.js"></script>
+<script>
+    //+-功能
+    $("tbody input[value='-']").click(function () {
+        var val = $(this).next().val()-0
+        val = val-1
+        if(val<0){
+            alert("一个都不买，你是多穷酸")
+            return false
+        }
+        $(this).next().val(val)
+
+        //对当前 “-” 所在的行 进行小计操作
+        var xiaoji1 = $(this).parents("tr")
+        xiaoji(xiaoji1)
+        // 小计改变数量重新计算总价 ，再次调用总价函数
+        zongji()
+    })
+    $("tbody input[value='+']").click(function () {
+        var val = $(this).prev().val()-0
+        val = val+1
+        $(this).prev().val(val)
+
+        //对当前 “+” 所在的行 进行小计操作
+        var xiaoji1 = $(this).parents("tr")
+        xiaoji(xiaoji1)
+
+        // 小计改变数量重新计算总价 ，再次调用总价函数
+        zongji()
+    })
+
+    //清空购物车
+    $("tfoot [value='清空购物车']").click(function () {
+        $("tbody tr").empty()
+
+        //清空购物车 重新计算总价
+        zongji()
+    })
+
+    //单删
+    $("tbody td:contains('删除')").click(function () {
+        $(this).parents("tr").empty()
+        $("thead input:checkbox,tfoot input:checkbox").prop("checked",false)
+        //删除行内小计，重新计算总价
+        zongji()
+    })
+
+    //全选
+    $("thead input:checkbox").click(function () {
+
+        //获取当前头部checkbox 的 checked 属性
+        var att = $(this).prop("checked")
+        // 将所有checkbox 的checked属性与 头部一致
+        $("tbody input:checkbox,tfoot input:checkbox").prop("checked",att)
+        zongji()
+    })
+    $("tfoot input:checkbox").click(function () {
+        var att = $(this).prop("checked")
+        $("thead input:checkbox,tbody input:checkbox").prop("checked",att)
+        zongji()
+    })
+
+    //反选
+
+    $("tbody input:checkbox").click(function () {
+        var num = $("tbody input:checkbox").length-0
+        var beidiannum = $("tbody input:checked").length-0
+        if(num==beidiannum){
+            $("thead input:checkbox,tfoot input:checkbox").prop("checked",true)
+        }else{
+            $("thead input:checkbox,tfoot input:checkbox").prop("checked",false)
+        }
+        zongji()
+    })
+
+    //删除所选
+
+    $("tfoot [value='删除所选']").click(function () {
+        var beishan = $("tbody input:checked")
+        if(beishan){
+            $("tbody input:checked").parents("tr").empty()
+        }
+        zongji()
+    })
+
+    //小计
+    // 传一个形参： 作用就是 下面传入实参为 tbody中所有的tr 使函数对每一行都起作用
+    function xiaoji(otr){
+        //设置变量接受小计
+        var sum=0
+        //获取单价
+        var danjia = otr.children().eq(2).html()-0
+        //获取数量
+        var shuliang = otr.children().eq(3).find("input:text").val()-0
+        //小计=单价*数量
+        var ji = danjia*shuliang
+        sum=sum+ji
+        //更改 小计中html值
+        otr.children().eq(4).html(sum)
+    }
+    var xiaoji1 =$("tbody tr")
+    xiaoji(xiaoji1)
+    $("tbody tr").each(function(index,element){
+        xiaoji($(element))
+    })
+
+
+    //总计
+
+    function zongji(){
+        //声明变量接受总价
+        var sum = 0
+        //循环获取每个选中的小计数
+        $("tbody :checked").each(function(index,element){
+             var jishu = $(element).parent().nextAll().eq(3).html()-0
+            sum = sum+jishu
+        })
+        //赋值给总计
+        $("tfoot span").eq(0).html(sum)
+    }
+    zongji()
+</script>
+</html>

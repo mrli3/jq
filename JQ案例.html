@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        list-style:none;
+    }
+    .box{
+        width: 690px;
+        height: 400px;
+        margin: 0 auto;
+        margin-top: 30px;
+        border: 1px solid #000;
+    }
+    ul{
+        overflow: hidden;
+        background: #02a682;
+    }
+    ul>li{
+        float: left;
+        width: 130px;
+        height: 47px;
+        line-height: 40px;
+        text-align: center;
+        background: grey;
+    }
+    ol{
+        padding: 20px;
+    }
+    ol>li>p{
+        margin-top: 20px;
+    }
+    .box ol>li{
+        display: none;
+    }
+    .box ol>li.li2{
+        display: block;
+    }
+    .box ul>li.li1{
+        background: red;
+    }
+    .box ol>li>p>span:nth-of-type(2){
+        float: right;
+    }
+    a{
+        text-decoration: none;
+    }
+    ul>span{
+        float: right;
+        font-size: 40px;
+        margin-right: 20px;
+    }
+</style>
+<body>
+    <div class="box">
+        <ul>
+            <li class="li1">教育</li>
+            <li>培训</li>
+            <li>出国</li>
+            <span><span id="span1" href=""><</span><span id="span2" href="">></span></span>
+        </ul>
+        <ol>
+            <li class="li2">
+                <p><span>名师教作文：3妙招巧写高分</span><span>2011-11-11</span></p>
+                <p><span>名师教作文：3妙招巧写高分</span><span>2011-11-11</span></p>
+                <p><span>名师教作文：3妙招巧写高分</span><span>2011-11-11</span></p>
+                <p><span>名分</span><span>2011-11-11</span></p>
+                <p><span>名师教作文：3妙招巧写高分</span><span>2011-11-11</span></p>
+                <p><span>名师教作文：3妙招巧写高分</span><span>2011-11-11</span></p>
+                <p><span>名师教作文：3妙招巧写高分</span><span>2011-11-11</span></p>
+            </li>
+            <li>
+                <p><span>名师教作文：3妙招巧写高分</span><span>2011-11-11</span></p>
+                <p><span>名师教作文：3妙招巧写高分</span><span>2011-11-11</span></p>
+                <p><span>名师教作文：3妙招巧写高分</span><span>2011-11-11</span></p>
+
+            </li>
+            <li>
+                <p><span>名师教作文：3妙招巧写高分</span><span>2011-11-11</span></p>
+                <p><span>名师教作文：3妙招巧写高分</span><span>2011-11-11</span></p>
+                <p><span>名</span><span>2011-11-11</span></p>
+
+                <p><span>名师教作文：3妙招巧写高分</span><span>2011-11-11</span></p>
+                <p><span>名师教作文：3妙招巧写高分</span><span>2011-11-11</span></p>
+            </li>
+
+        </ol>
+    </div>
+</body>
+<script src="jquery-3.4.1.js"></script>
+<script>
+    var index=0
+    $(".box ul>li").mouseover(function () {
+         index = $(this).index()
+        $(this).addClass("li1").siblings().removeClass()
+        $(".box ol>li").eq(index).show().siblings().hide()
+    })
+    $("#span1").click(function () {
+        index--
+        if(index<=-1){
+            index=2
+        }
+        $(".box ul>li").eq(index).addClass("li1").siblings().removeClass()
+        $(".box ol>li").eq(index).show().siblings().hide()
+    })
+
+    $("#span2").click(function () {
+        index++
+        if(index>=3){
+            index=0
+        }
+        $(".box ul>li").eq(index).addClass("li1").siblings().removeClass()
+        $(".box ol>li").eq(index).show().siblings().hide()
+    })
+</script>
+</html>

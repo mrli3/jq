@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    *{
+        list-style:none;
+        margin: 0;
+        padding: 0;
+    }
+    .dadiv{
+        width: 500px;
+        margin: 0 auto;
+    }
+    .div1{
+        width: 500px;
+        height: 40px;
+        border: 1px solid #000;
+        background: #0d419d;
+    }
+    ul{
+        overflow: hidden;
+    }
+    .div1 ul>li{
+        float: left;
+        width: 99px;
+        line-height: 40px;
+        text-align: center;
+
+    }
+    .div2 ol>li.li2{
+        display: block;
+    }
+    .div2 ol>li{
+        display: none;
+        height: 360px;
+        background:#00ae66;
+    }
+</style>
+<body>
+    <div class="dadiv">
+        <div class="div1">
+            <ul>
+                <li class="li1">第一月</li>
+                <li>第2月</li>
+                <li>第3月</li>
+                <li>第4月</li>
+                <li>第5月</li>
+            </ul>
+        </div>
+        <div class="div2">
+            <ol>
+                <li class="li2">CSS</li>
+                <li>JS</li>
+                <li>JQ</li>
+                <li>移动端</li>
+                <li>H5</li>
+            </ol>
+        </div>
+    </div>
+</body>
+<script>
+    var newdiv1 = document.getElementsByClassName("div1")[0]
+    var newli1 = newdiv1.getElementsByTagName("li")
+    var newdiv2 = document.getElementsByClassName("div2")[0]
+    var newli2 = newdiv2.getElementsByTagName("li")
+
+    for(i=0;i<newli1.length;i++){
+        newli1[i].index=i
+        newli1[i].onclick= function () {
+            for(q=0;q<newli1.length;q++){
+                newli1[q].className=""
+            }
+            for(w=0;w<newli2.length;w++){
+                newli2[w].className=""
+            }
+            this.className="li1"
+            newli2[this.index].className="li2"
+        }
+    }
+</script>
+</html>

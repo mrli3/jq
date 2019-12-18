@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    .li1{
+        background: #02a682;
+    }
+</style>
+<body>
+<ul>
+    <li class="li2">学习</li>
+    <li>努力</li>
+    <li>奋斗</li>
+    <li>向前</li>
+</ul>
+
+<!--<ul>-->
+    <!--<li class="li1">学习学习学习学习学习</li>-->
+    <!--<li>努力努力努力努力努力</li>-->
+    <!--<li>奋斗奋斗奋斗奋斗奋斗</li>-->
+    <!--<li>向前向前向前向前向前</li>-->
+<!--</ul>-->
+<div>
+
+</div>
+<div>
+    <p>r eyrry</p>
+</div>
+<button>点击</button>
+<input autofocus="autofocus" type="text">
+</body>
+<script src="jquery-3.4.1.js"></script>
+<script>
+//    //过滤器
+//    $("button").click(function () {
+//        $("li:odd").css({color:"red"})
+//
+//    })
+//    $(":focus").css({width:"100px",height:"100px"})
+////    $("li:contains('努力')").css({background:"red"})
+//    $("ul:has(li)").addClass("li1")
+//    $("div:parent").addClass("li1")
+//    $("div:empty").css({width:"100px",height:"100px",border:"1px solid red"})
+////each
+//    $("ul li").each(function (index,element) {
+//        var red = $(element).text()
+//    })
+//    $("ul li").each(function (index,element) {
+//        var res = $(this).html()
+//        console.log(res)
+//    })
+
+
+    //事件绑定和解绑
+    
+    $("button").click(function () {
+        alert(1)
+    })
+    $("button").on('click', function () {
+        alert(2)
+    })
+    $("button").bind('click', function () {
+        alert(3)
+    })
+
+//事件解绑
+
+
+//    $("button").off('click')
+//    $("button").unbind('click')
+
+
+
+
+</script>
+</html>

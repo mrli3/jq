@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        list-style:none;
+    }
+    .lsh-nav>ul{
+        overflow: hidden;
+        position: relative;
+    }
+    .lsh-nav>ul>li{
+        float: left;
+        padding: 10px;
+        background: green;
+        color:white;
+        font-weight:bold;
+    }
+    .lsh-nav>ul>li.li1{
+        background: red;
+    }
+    .lsh-lun{
+        width: 563px;
+        height: 304px;
+
+    }
+    ol{
+        position: absolute;
+        right: 20px;
+        bottom: 10px;
+        overflow: hidden;
+    }
+    .lsh-lun>li{
+        display: none;
+        width: 563px;
+        height: 304px;
+    }
+    .lsh-lun>li.li2{
+        display: block;
+    }
+    .lsh-lun>li>h4{
+        color:white;
+        position: absolute;
+        bottom: 4px;
+        left: 2px;
+    }
+
+    ol>li{
+        margin-left: 4px;
+        width: 10px;
+        height: 10px;
+        border-radius:100%;
+        background: white;
+        float: left;
+    }
+    .lsh-zuo{
+        color:white;
+        width: 50px;
+        height: 50px;
+        line-height: 50px;
+        text-align: center;
+        font-size: 30px;
+        position: absolute;
+        left: 20px;
+        top: 50%;
+        cursor: pointer;
+    }
+    .lsh-core{
+        width: 560px;
+        height: 300px;
+        position: relative;
+    }
+    .lsh-you{
+        color:white;
+        width: 50px;
+        height: 50px;
+        line-height: 50px;
+        text-align: center;
+        font-size: 30px;
+        position: absolute;
+        right: 20px;
+        top: 50%;
+        cursor: pointer;
+    }
+    .li3{
+        background: #7D83FF;
+    }
+    .lsh-i{
+        background: #eeeeee;
+        width: 50px;
+        height: 50px;
+        border-radius:100%;
+    }
+    .lsh-zuo:hover{
+        color:#00cdf2;
+        background: #eeeeee;
+        border-radius:100%;
+    }
+    .lsh-you:hover{
+        color:#00cdf2;
+        background: #eeeeee;
+        border-radius:100%;
+    }
+    .lsh1{
+        width: 52px;
+        height: 40px;
+        background: red;
+        position: absolute;
+        top: 0;
+        left: 0px;
+        opacity: 0.5;
+    }
+</style>
+<body>
+<div class="lshwrap">
+    <div class="lsh-nav">
+        <ul>
+            <li class="li1">首页</li>
+            <li>国内</li>
+            <li>国际</li>
+            <li>军事</li>
+            <li>财经</li>
+            <li>娱乐</li>
+            <li>体育</li>
+            <li>互联</li>
+            <li>科技</li>
+            <li>游戏</li>
+            <li>女人</li>
+            <li>汽车</li>
+            <li>房产</li>
+        </ul>
+        <div class="lsh1"></div>
+    </div>
+    <div class="lsh-core">
+        <ul class="lsh-lun">
+            <li class="li2">
+                <img src="img1.png" alt="">
+                <h4>“夜经济”成为中国经济新兴活力源</h4>
+            </li>
+            <li>
+                <img src="img2.png" alt="">
+                <h4>立秋时节忙采莲</h4>
+            </li>
+            <li>
+                <img src="img3.png" alt="">
+                <h4>“夜经济”成为中国经济新兴活力源</h4>
+            </li>
+            <li>
+                <img src="img4.png" alt="">
+                <h4>“夜经济”成为中国经济新兴活力源</h4>
+            </li>
+            <li>
+                <img src="img5.png" alt="">
+                <h4>“夜经济”成为中国经济新兴活力源</h4>
+            </li>
+        </ul>
+        <ol>
+            <li class="li3"></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ol>
+        <div class="lsh-zuo"><</div>
+        <div class="lsh-you">></div>
+    </div>
+</div>
+
+
+
+</body>
+<script src="jquery-3.4.1.js"></script>
+<script>
+    var lshindex=0
+    $(".lsh-nav>ul>li").mouseenter(function () {
+        index=$(this).index()
+//        $(this).addClass("li1").siblings().removeClass("li1")
+        $(".lsh1").animate({left:index*52+"px"},200)
+    })
+    $(".lsh-nav").mouseleave(function () {
+        $(".lsh1").animate({left:0})
+    })
+
+    //轮播图
+    //小圆点功能
+    $("ol>li").mouseenter(function () {
+        lshindex=$(this).index()
+        $(this).addClass("li3").siblings().removeClass("li3")
+        $(".lsh-lun>li").eq(lshindex).show().siblings().hide()
+    })
+    //自动轮播
+    var timer = setInterval(move,2000)
+    function move(){
+        lshindex++
+        if(lshindex>4){
+            lshindex=0
+        }
+        $("ol>li").eq(lshindex).addClass("li3").siblings().removeClass("li3")
+        $(".lsh-lun>li").eq(lshindex).show().siblings().hide()
+    }
+    $(".lsh-core").hover(function(){
+        clearInterval(timer)
+    },function(){
+        timer=setInterval(move,2000)
+    })
+    //左右按钮
+    $(".lsh-you").click(function () {
+        lshindex++;
+        if(lshindex>4){
+            lshindex=0
+        }
+        $("ol>li").eq(lshindex).addClass("li3").siblings().removeClass("li3")
+        $(".lsh-lun>li").eq(lshindex).show().siblings().hide()
+    })
+    $(".lsh-zuo").click(function () {
+        lshindex--;
+        if(lshindex<0){
+            lshindex=4
+        }
+        $("ol>li").eq(lshindex).addClass("li3").siblings().removeClass("li3")
+        $(".lsh-lun>li").eq(lshindex).show().siblings().hide()
+    })
+
+</script>
+</html>

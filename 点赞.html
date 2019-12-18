@@ -1,0 +1,122 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+    <!--<meta charset="UTF-8">-->
+    <!--<title>Title</title>-->
+<!--</head>-->
+<!--<style>-->
+    <!--a{-->
+        <!--text-decoration: none;-->
+        <!--color:orange;-->
+    <!--}-->
+    <!--.li1{-->
+        <!--color: green;-->
+    <!--}-->
+<!--</style>-->
+<!--<body>-->
+    <!--<div>-->
+        <!--<span>❥(^_-)</span>-->
+        <!--<a href="">点赞</a>-->
+        <!--<span>666</span>-->
+    <!--</div>-->
+<!--</body>-->
+<!--<script src="jquery-3.4.1.js"></script>-->
+<!--<script>-->
+    <!--$("a").click(function (e) {-->
+        <!--e.preventDefault()-->
+        <!--var res  = $(this).prev().hasClass("li1")-->
+        <!--var a = $(this).next().html()-0-->
+        <!--if(res){-->
+            <!--$(this).next().html(a-1)-->
+            <!--$(this).prev().removeClass("li1")-->
+        <!--}else{-->
+            <!--$(this).next().html(a+1)-->
+            <!--$(this).prev().addClass("li1")-->
+        <!--}-->
+
+
+    <!--})-->
+<!--</script>-->
+<!--</html>-->
+
+
+<!--<!doctype html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+    <!--<meta charset="UTF-8">-->
+    <!--<title>Document</title>-->
+<!--</head>-->
+<!--<style>-->
+    <!--b{-->
+        <!--margin: 10px;-->
+        <!--cursor: pointer;-->
+    <!--}-->
+    <!--.li1{-->
+        <!--color:orange;-->
+    <!--}-->
+<!--</style>-->
+<!--<body>-->
+<!--<span>❥(^_-)</span>-->
+<!--<b>点赞</b>-->
+<!--<span>666</span>-->
+<!--</body>-->
+<!--<script src="jquery-3.4.1.js"></script>-->
+<!--<script>-->
+
+    <!--$("b").click(function () {-->
+        <!--var a = $(this).next().html()-0-->
+        <!--var b = $(this).prev().hasClass("li1")-->
+        <!--if(b){-->
+            <!--$(this).prev().removeClass("li1")-->
+            <!--$(this).next().html(a-1)-->
+        <!--}else{-->
+            <!--$(this).prev().addClass("li1")-->
+            <!--$(this).next().html(a+1)-->
+
+        <!--}-->
+
+    <!--})-->
+<!--</script>-->
+<!--</html>-->
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<style>
+    span{
+        margin-left: 20px;
+        cursor:pointer;
+    }
+    .li1{
+        color:orange;
+    }
+</style>
+<body>
+<span>❥(^_-)</span><span>点赞</span><span>666</span>
+</body>
+<script src="jquery-3.4.1.js"></script>
+<script>
+    $("span").eq(1).click(function () {
+        var a = $(this).next().html()-0
+        var b = $(this).prev().hasClass("li1")
+        $(this).prev().addClass("li1")
+        if(b){
+            $(this).next().html(a-1)
+            $(this).prev().removeClass("li1")
+        }else{
+            $(this).next().html(a+1)
+            $(this).prev().addClass("li1")
+        }
+
+    })
+</script>
+</html>
+
+
+
+
+
+

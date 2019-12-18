@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //原型链继承
+//    function Fu(){
+//        this.name="张三"
+//    }
+//    function Zi(){
+//
+//    }
+//    Zi.prototype=new Fu()
+//    var a = new Zi()
+//    console.log(a.name)
+
+//    function Fu(){
+//        this.name="黄蓉"
+//    }
+//    function Zi(){
+//
+//    }
+//    Zi.prototype=new Fu()
+//    var a = new Zi()
+//    console.log(a.name)
+
+    //构造函数模式继承
+//    function Fu(name){
+//        this.name=name
+//    }
+//    function Zi(name){
+//        Fu.call(this,name)
+//    }
+//    var a  = new Zi("郭靖")
+//    console.log(a.name)
+
+//    function Fu(name){
+//        this.name=name
+//    }
+//    function Zi(name){
+//        Fu.call(this,name)
+//    }
+//    var a = new Zi("黄蓉")
+//    console.log(a.name)
+
+    //hasOwnproperty 查找构造函数内是否包含该属性。
+//    function Person(){
+//        this.name="黄蓉"
+//    }
+//    var a = new Person()
+//    console.log(a.hasOwnProperty("name"))
+//    console.log(a.hasOwnProperty("age"))
+
+    //去空
+//    var str = "   郭靖 ， 黄蓉   "
+//    str = str.replace(/ /g,"")
+//    console.log(str)
+</script>
+</body>
+</html>

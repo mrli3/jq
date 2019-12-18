@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    *{
+        list-style:none;
+        margin: 0;
+        padding: 0;
+    }
+    .dadiv{
+        width: 500px;
+        height: 400px;
+        border: 1px solid #000;
+    }
+    .div1{
+        height: 40px;
+        border: 1px solid #000;
+    }
+    .div2{
+        height: 360px;
+        border: 1px solid #000;
+    }
+    ul{
+        overflow: hidden;
+    }
+    ul>li{
+        float: left;
+        width: 99px;
+        text-align: center;
+        line-height: 40px;
+    }
+    .div1 ul>li.li1{
+        background: #00c0a5;
+    }
+    .div2 ol>li{
+        display: none;
+    }
+    .div2 ol>li.li2{
+        display: block;
+    }
+    .li2{
+        background: #1a4a8d;
+    }
+</style>
+<body>
+<div class="dadiv">
+    <div class="div1">
+        <ul class="sel1">
+            <li class="li1">浙江</li>
+            <li>山西</li>
+            <li>河南</li>
+            <li>河北</li>
+            <li>东北</li>
+        </ul>
+    </div>
+    <div class="div2">
+        <ol>
+            <li class="li2">welcome to 浙江</li>
+            <li>welcome to 山西</li>
+            <li>welcome to 河南</li>
+            <li>welcome to 河北</li>
+            <li>welcome to 东北</li>
+        </ol>
+    </div>
+</div>
+</body>
+<script>
+    var newdiv1 = document.getElementsByClassName("div1")[0]
+    var newli1 = newdiv1.getElementsByTagName("li")
+    var newdiv2 = document.getElementsByClassName("div2")[0]
+    var newli2 = newdiv2.getElementsByTagName("li")
+
+    for(i=0;i<newli1.length;i++){
+        newli1[i].index=i
+        newli1[i].onclick= function () {
+            for(q=0;q<newli1.length;q++){
+                newli1[q].className=""
+            }
+            for(w=0;w<newli2.length;w++){
+                newli2[w].className=""
+            }
+            this.className="li1"
+            newli2[this.index].className="li2"
+        }
+    }
+</script>
+</html>

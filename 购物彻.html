@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<table border="1" cellspacing="0" >
+    <thead>
+    <tr>
+        <th><input type="checkbox">全选</th>
+        <th>名称</th>
+        <th>单价</th>
+        <th>数量</th>
+        <th>小计</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td><input type="checkbox"></td>
+        <td>小米手机</td>
+        <td>2000</td>
+        <td><input value="-" type="button">
+            <input value="1" type="text">
+            <input value="+" type="button">
+        </td>
+        <td>0</td>
+        <td style="cursor: pointer">删除</td>
+    </tr>
+    <tr>
+        <td><input type="checkbox"></td>
+        <td>大米手机</td>
+        <td>4000</td>
+        <td><input value="-" type="button">
+            <input value="1" type="text">
+            <input value="+" type="button">
+        </td>
+        <td>0</td>
+        <td style="cursor: pointer">删除</td>
+    </tr>
+    </tbody>
+    <tfoot>
+    <tr>
+        <td style="overflow: hidden" colspan="6">
+            <input type="checkbox">全选
+            <input value="删除所选" type="button">
+            <input value="清空购物车" type="button">
+            <span style="float:right">0</span>
+            <span style="float:right">￥</span>
+            <span style="float:right">总计</span>
+        </td>
+    </tr>
+    </tfoot>
+</table>
+</body>
+<script src="jquery-3.4.1.js"></script>
+<script>
+    $("tbody [value='+']").click(function () {
+        var nei = $(this).prev().val()-0;
+        nei = nei+1
+        $(this).prev().val(nei)
+        var ty = $(this).parents("tr")
+        xiaoji(ty)
+        zongji()
+    })
+    $("tbody [value='-']").click(function () {
+        var nei = $(this).next().val()-0;
+        nei--
+        if(nei<1){
+            var ok  = confirm("是否删除该商品")
+            if(ok){
+                $(this).parents("tr").remove()
+            }else{
+                nei=1
+            }
+        }
+        $(this).next().val(nei)
+        var ty = $(this).parents("tr")
+        xiaoji(ty)
+        zongji()
+    })
+    //单删
+    $("tbody :contains('删除')").click(function () {
+        $(this).parents("tr").remove()
+        zongji()
+    })
+
+    //q全选
+    $("thead input").click(function () {
+        var state = $(this).prop("checked")
+        $("tbody input,tfoot input").prop("checked",state)
+        zongji()
+    })
+
+//    反选
+
+    $("tbody [type=checkbox]").click(function () {
+        var num = $("tbody [type=checkbox]").length
+        var num1 = $("tbody input:checked").length
+        if(num==num1){
+            $("thead input,tfoot input").prop("checked",true)
+        }else{
+            $("thead input,tfoot input").prop("checked",false)
+        }
+        zongji()
+    })
+
+    //小计
+
+    function xiaoji(otr){
+        var danjia = otr.children().eq(2).html()
+        var shuliang = otr.children().eq(3).find("[type=text]").val()
+        var ji = danjia*shuliang
+        otr.children().eq(4).html(ji)
+    }
+
+    $("tbody tr").each(function(index,element){
+        xiaoji($(element))
+    })
+
+    //总计
+    function zongji(){
+        var sum  = 0
+        $("tbody input:checked").each(function(index,element){
+            var ol = $(element).parent().nextAll().eq(3).html()-0
+            sum=sum+ol
+        })
+        $("tfoot span").eq(0).html(sum)
+    }
+    zongji()
+</script>
+</html>
